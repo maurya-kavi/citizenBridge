@@ -71,7 +71,7 @@ router.post("/:documentId", async (req, res) => {
 
 const searchResults = searchResponse.points;
 
-console.log("[Qdrant Flow Result]", searchResults);
+
 
     if (searchResults.length === 0) {
       return res.json({ flow: {}, message: "No relevant content found in document." });

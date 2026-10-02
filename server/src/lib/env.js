@@ -13,4 +13,5 @@ export const ENV = {
     qdrant_url: process.env.QDRANT_URL,
     qdrant_api_key: process.env.QDRANT_API_KEY,
     gemini_api_key: process.env.GEMINI_API_KEY,
+    inngest_event_key: process.env.INNGEST_EVENT_KEY,
 }

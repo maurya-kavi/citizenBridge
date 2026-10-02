@@ -47,7 +47,7 @@ function AskPanel({ documentId, onClose }) {
     setMessages((prev) => [...prev, { role: 'user', text: q }])
     setLoading(true)
     try {
-      const res = await fetch(`http://localhost:5000/api/chat/${documentId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/chat/${documentId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: q }),
@@ -188,7 +188,7 @@ function FlowPanel({ documentId, onClose }) {
     setFlow(null)
     setExpandedSteps({})
     try {
-      const res = await fetch(`http://localhost:5000/api/flow/${documentId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/flow/${documentId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: q }),
@@ -351,7 +351,7 @@ export default function ChatPage() {
   useEffect(() => {
     const fetchDoc = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/documents/${documentId}`)
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/documents/${documentId}`)
         const data = await res.json()
         setDoc(data)
       } catch {

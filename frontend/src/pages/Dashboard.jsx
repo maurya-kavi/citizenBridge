@@ -57,7 +57,7 @@ function UploadDialog({ open, onClose, userId, onSuccess }) {
       formData.append('description', description.trim())
       formData.append('userId', userId)
 
-      const res = await fetch('http://localhost:5000/api/documents', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/documents`, {
         method: 'POST',
         body: formData,
       })
@@ -179,7 +179,7 @@ const Dashboard = () => {
 
     const fetchDocuments = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/documents/user/${user.id}`)
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/documents/user/${user.id}`)
         if (!res.ok) throw new Error('Failed to fetch documents')
         const data = await res.json()
         setDocuments(data)
@@ -210,7 +210,7 @@ const Dashboard = () => {
       const updates = await Promise.all(
         inProgress.map(async (doc) => {
           try {
-            const res = await fetch(`http://localhost:5000/api/documents/${doc._id}`)
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/documents/${doc._id}`)
             if (!res.ok) return null
             return await res.json()
           } catch {

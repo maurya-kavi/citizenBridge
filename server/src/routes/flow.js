@@ -63,11 +63,15 @@ router.post("/:documentId", async (req, res) => {
     const queryVector = await embedQuery(query.trim());
 
     // 3. Similarity search in Qdrant
-    const searchResults = await qdrant.query(doc.qdrantCollection, {
+    const searchResponse = await qdrant.query(doc.qdrantCollection, {
   query: queryVector,
   limit: TOP_K,
   with_payload: true,
 });
+
+const searchResults = searchResponse.points;
+
+console.log("[Qdrant Flow Result]", searchResults);
 
     if (searchResults.length === 0) {
       return res.json({ flow: {}, message: "No relevant content found in document." });
